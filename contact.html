@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vyshnav K Vinodh- Portfolio</title>
+
+    <!-- box icons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/portfolioStyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <script>
+      const links = document.querySelectorAll(".copy-click");
+      const cls = {
+        copied: "is-copied",
+        hover: "is-hovered",
+      };
+
+      const copyToClipboard = (str) => {
+        const el = document.createElement("input");
+        str.dataset.copyString
+          ? (el.value = str.dataset.copyString)
+          : (el.value = str.text);
+        el.setAttribute("readonly", "");
+        el.style.position = "absolute";
+        el.style.opacity = 0;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+      };
+      const clickInteraction = (e) => {
+        e.preventDefault();
+        copyToClipboard(e.target);
+        e.target.classList.add(cls.copied);
+        setTimeout(() => e.target.classList.remove(cls.copied), 1000);
+        setTimeout(() => e.target.classList.remove(cls.hover), 700);
+      };
+      Array.from(links).forEach((link) => {
+        link.addEventListener("click", (e) => clickInteraction(e));
+        link.addEventListener("keypress", (e) => {
+          if (e.keyCode === 13) clickInteraction(e);
+        });
+        link.addEventListener("mouseover", (e) =>
+          e.target.classList.add(cls.hover)
+        );
+        link.addEventListener("mouseleave", (e) => {
+          if (!e.target.classList.contains(cls.copied)) {
+            e.target.classList.remove(cls.hover);
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h2 class="Logo"><a href="home.html" style="text-decoration: none; color: white;"><b>I</b><span style="color: aqua">am</span>Vyshnav.</a></h2>
+      <nav class="navigation">
+        <a href="home.html" target="_parent">Home</a>
+        <a href="about.html" target="_parent">About Me</a>
+        <a href="project.html" target="_parent">Projects</a>
+        <a href="skills.html" target="_parent">Skills</a>
+        <a href="references.html" target="_parent">References</a>
+        <a href="contact.html" target="_parent" style="color: aqua"
+          >Contact Me</a
+        >
+      </nav>
+      <a href="#insta"></a>
+    </div>
+    <section class="contact" id="contact">
+      <h2><br /><br />Contact me</h2>
+      <div class="contactdiv">
+        <h5 class="ph">PhoneNo</h5>
+        <h5 class="ad"><a href="https://maps.app.goo.gl/TnGSn8LRiS8b86ft9" style="text-decoration: none; color: white;">Address</a></h5>
+        <h5 class="em">E-mail</h5>
+      </div>
+      <div class="contactdiv">
+        <p class="ph">1231232</p>
+        <p class="ad">qwee street <br />asdfweew city <br />sydsdndf</p>
+        <p class="em">
+          <a
+            href=""
+            class="copy-click"
+            data-tooltip-text="Click To Copy"
+            data-tooltip-text-copied="✔ Copied"
+          >
+            qweqweqd@wedcq.com
+          </a>
+        </p>
+      </div>
+    </section>
+    <div>
+      
+      <div class="message-container">
+        <input
+          type="text"
+          class="message"
+          name="Talk to me anytime"
+          placeholder="Message Me"
+        />
+        <button
+          class="buttonsend"
+          style="
+            border-color: aqua;
+            border-radius: 50px;
+
+            background-color: aqua;
+            color: white;
+          "
+        >
+          <a href="https://outlook.office365.com/mail/">Submit</a>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
